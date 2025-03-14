@@ -20,4 +20,7 @@ export class TaskService {
     console.log('Task updated:', task);
   }
 
+  deleteTask(task: Task) {
+    console.log('Task deleted:', task);
+  }
 }
