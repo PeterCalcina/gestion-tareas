@@ -1,0 +1,50 @@
+.card {
+  width: 18rem;
+  border-radius: 5px;
+  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+}
+
+.card_header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 5px;
+  background: var(--p-green-500);
+}
+
+:where(.card_body, .card_footer) {
+  padding: 10px 5px;
+  background: var(--p-green-50);
+}
+
+.card_body {
+  color: var(--p-green-950);
+
+  .card_text-state {
+    margin-top: 10px;
+    width: fit-content;
+    padding: 4px 8px;
+    font-size: 12px;
+    border-radius: 15px;
+    color: var(--p-orange-50);
+    font-weight: bold;
+    background: var(--p-yellow-500);
+  }
+
+  .card_text-state.complete {
+    background: var(--p-green-500);
+  }
+}
+
+.card_footer {
+  text-align: right;
+}
+
+.container_popover {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  align-items: center;
+}
+

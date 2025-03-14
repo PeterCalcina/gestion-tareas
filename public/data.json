@@ -1,0 +1,30 @@
+[
+  {
+    "id": 1,
+    "title": "Finalizar la prueba técnica",
+    "description": "Completar todas las funcionalidades y enviar el código.",
+    "status": "pending",
+    "registerDate": "2025-03-12T10:30:00Z"
+  },
+  {
+    "id": 2,
+    "title": "Revisar correos",
+    "description": "Verificar si hay respuestas de entrevistas o nuevas oportunidades.",
+    "status": "pending",
+    "registerDate": "2025-03-11T08:45:00Z"
+  },
+  {
+    "id": 3,
+    "title": "Hacer ejercicio",
+    "description": "Ejercicios de brazos y espalda durante 45 minutos.",
+    "status": "pending",
+    "registerDate": "2025-03-10T18:00:00Z"
+  },
+  {
+    "id": 4,
+    "title": "Actualizar portafolio",
+    "description": "Añadir los últimos proyectos y mejorar la presentación.",
+    "status": "complete",
+    "registerDate": "2025-03-09T14:15:00Z"
+  }
+]

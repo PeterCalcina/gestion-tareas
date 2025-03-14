@@ -35,7 +35,7 @@ export class CreateTaskComponent {
   taskForm: FormGroup = this.formBuilder.group({
     title: ['', Validators.required],
     description: ['', Validators.required],
-    state: ['pending'],
+    status: ['pending'],
     registerDate: [new Date()],
   });
 
