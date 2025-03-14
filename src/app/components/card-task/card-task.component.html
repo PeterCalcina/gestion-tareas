@@ -1,0 +1,24 @@
+<div class="card">
+  <div class="card_header">
+    <h3 class="card_title">{{ task.title }}</h3>
+    <p-button class="btn_ellipsis" (click)="op.toggle($event)" icon="pi pi-ellipsis-v" />
+  </div>
+
+  <div class="card_body">
+    <p>{{ task.description }}</p>
+    <p class="card_text-state {{ task.status }}">{{ getStatus(task.status) }}</p>
+  </div>
+
+  @if (task.status === 'pending') {
+    <div class="card_footer">
+      <p-button class="btn_primary" label="Finalizar tarea" />
+    </div>
+  }
+</div>
+
+<p-popover #op>
+  <div class="container_popover">
+    <p-button class="btn_popover" label="Editar tarea" />
+    <p-button class="btn_popover" label="Eliminar tarea" />
+  </div>
+</p-popover>

@@ -1,1 +1,36 @@
-/* You can add global styles to this file, and also import other style files */
+@import "primeicons/primeicons.css";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.btn_primary .p-button {
+  padding-block: 5px;
+}
+
+.btn_ellipsis .p-button {
+  border-color: transparent;
+  color: var(--p-green-50);
+  background: transparent;
+}
+
+.btn_ellipsis .p-button:not(:disabled):hover {
+  border-color: transparent;
+  background: transparent;
+}
+
+.btn_popover .p-button {
+  width: 7rem;
+  padding-block: 5px;
+  padding-inline: 5px;
+  border-color: var(--p-gray-400);
+  color: var(--p-gray-950);
+  background: var(--p-gray-200);
+}
+
+.btn_popover .p-button:not(:disabled):hover {
+  background: var(--p-gray-300);
+  color: var(--p-gray-950);
+}
