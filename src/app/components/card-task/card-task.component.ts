@@ -27,4 +27,8 @@ export class CardTaskComponent {
     this.shareTaskService.setTask(task);
     this.shareTaskService.setOpenModal(true);
   }
+
+  deleteTask( task: Task ) {
+    this.shareTaskService.setConfirmDeleteTask(true, task);
+  }
 }
