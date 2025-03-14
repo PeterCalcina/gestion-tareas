@@ -11,7 +11,7 @@
 
   @if (task.status === 'pending') {
     <div class="card_footer">
-      <p-button class="btn_primary" label="Finalizar tarea" />
+      <p-button class="btn_primary" label="Finalizar tarea" (onClick)="taskCompleted(task)" />
     </div>
   }
 </div>
