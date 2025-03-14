@@ -1,8 +1,9 @@
-import { Component, Input } from '@angular/core';
+import { Component, inject, Input } from '@angular/core';
 import { ButtonModule } from 'primeng/button';
 import { PopoverModule } from 'primeng/popover';
 
 import { Task } from '../../interface/Task.interface';
+import { ShareTaskService } from '../../service/shareTask.service';
 
 @Component({
   selector: 'app-card-task',
@@ -12,10 +13,18 @@ import { Task } from '../../interface/Task.interface';
 })
 export class CardTaskComponent {
   @Input() task!: Task;
+
+  private shareTaskService = inject(ShareTaskService);
+
   newStatus: string = '';
 
   getStatus( status: string ) {
     this.newStatus = status === 'pending' ? 'Pendiente' : 'Completado';
     return this.newStatus;
+  }
+
+  setTask( task: Task ) {
+    this.shareTaskService.setTask(task);
+    this.shareTaskService.setOpenModal(true);
   }
 }

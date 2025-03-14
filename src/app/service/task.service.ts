@@ -16,5 +16,8 @@ export class TaskService {
     console.log('Task created:', task);
   }
 
+  updateTask(task: Task) {
+    console.log('Task updated:', task);
+  }
 
 }

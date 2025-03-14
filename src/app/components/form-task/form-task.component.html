@@ -1,0 +1,46 @@
+<p-dialog
+  [header]="title"
+  [modal]="true"
+  [(visible)]="showModal"
+  [style]="{ width: '25rem' }"
+  (onHide)="closeModal()"
+>
+  <form [formGroup]="taskForm" autocomplete="off" class="form">
+    <div class="form_group">
+      <label for="title" class="label_form">Título:</label>
+      <input pInputText id="title" autocomplete="off" formControlName="title" />
+    </div>
+
+    <div class="form_group">
+      <label for="description" class="label_form">Descripción:</label>
+      <textarea
+        id="description"
+        rows="5"
+        cols="30"
+        pTextarea
+        formControlName="description"
+      ></textarea>
+    </div>
+
+    <div class="form_buttons">
+      <p-button
+        label="Cancelar"
+        severity="secondary"
+        (click)="closeModal()"
+      />
+      @if (isCreate) {
+      <p-button
+        label="Guardar"
+        (click)="createTask()"
+        [disabled]="!taskForm.valid"
+      />
+      } @else {
+      <p-button
+        label="Actualizar"
+        (click)="updateTask()"
+        [disabled]="!taskForm.valid"
+      />
+      }
+    </div>
+  </form>
+</p-dialog>
