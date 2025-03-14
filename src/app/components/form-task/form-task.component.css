@@ -1,0 +1,21 @@
+:where(.form, .form_group) {
+  display: flex;
+  flex-direction: column;
+}
+
+.form {
+  gap: 15px;
+}
+
+.form_group {
+  gap: 5px;
+}
+
+.form_buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.label_form {
+  font-size: 1rem;
+}

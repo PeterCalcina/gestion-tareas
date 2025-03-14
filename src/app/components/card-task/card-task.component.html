@@ -18,7 +18,7 @@
 
 <p-popover #op>
   <div class="container_popover">
-    <p-button class="btn_popover" label="Editar tarea" />
+    <p-button class="btn_popover" label="Editar tarea" (onClick)="setTask(task)" />
     <p-button class="btn_popover" label="Eliminar tarea" />
   </div>
 </p-popover>
