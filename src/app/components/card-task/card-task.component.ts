@@ -4,6 +4,7 @@ import { PopoverModule } from 'primeng/popover';
 
 import { Task } from '../../interface/Task.interface';
 import { ShareTaskService } from '../../service/shareTask.service';
+import { TaskService } from '../../service/task.service';
 
 @Component({
   selector: 'app-card-task',
@@ -15,6 +16,7 @@ export class CardTaskComponent {
   @Input() task!: Task;
 
   private shareTaskService = inject(ShareTaskService);
+  private taskService = inject(TaskService);
 
   newStatus: string = '';
 
@@ -30,5 +32,10 @@ export class CardTaskComponent {
 
   deleteTask( task: Task ) {
     this.shareTaskService.setConfirmDeleteTask(true, task);
+  }
+
+  taskCompleted( task: Task ) {
+    task.status = 'complete';
+    this.taskService.updateTask(task);
   }
 }
