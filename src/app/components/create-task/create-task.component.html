@@ -1,0 +1,33 @@
+<p-button label="Crear tarea" (click)="showModal = true" />
+
+<p-dialog
+  header="Crear nueva tarea"
+  [modal]="true"
+  [(visible)]="showModal"
+  [style]="{ width: '25rem' }"
+>
+  <form [formGroup]="taskForm" autocomplete="off" class="form">
+    <div class="form_group">
+      <label for="title" class="label_form">Título:</label>
+      <input pInputText id="title" autocomplete="off" formControlName="title" />
+    </div>
+    
+    <div class="form_group">
+      <label for="description" class="label_form">Descripción:</label>
+      <textarea id="description" rows="5" cols="30" pTextarea formControlName="description"></textarea>
+    </div>
+
+    <div class="form_buttons">
+      <p-button
+        label="Cancelar"
+        severity="secondary"
+        (click)="showModal = false"
+      />
+      <p-button
+        label="Guardar"
+        (click)="createTask()"
+        [disabled]="!taskForm.valid"
+      />
+    </div>
+  </form>
+</p-dialog>
