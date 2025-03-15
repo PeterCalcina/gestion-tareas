@@ -36,6 +36,14 @@ export class CardTaskComponent {
 
   taskCompleted( task: Task ) {
     task.status = 'complete';
-    this.taskService.updateTask(task);
+
+    this.taskService.updateTask(task).subscribe({
+      next: (task: Task) => {
+        console.log('Task updated', task);
+      },
+      error: (error) => {
+        console.error('Error updating task', error);
+      }
+    });
   }
 }

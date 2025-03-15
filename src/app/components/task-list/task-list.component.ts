@@ -1,8 +1,9 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, effect, inject, OnInit } from '@angular/core';
 import { TaskService } from '../../service/task.service';
 import { Task } from '../../interface/Task.interface';
 import { CardTaskComponent } from "../card-task/card-task.component";
 import { SelectChangeEvent, SelectModule } from 'primeng/select';
+import { ShareTaskService } from '../../service/shareTask.service';
 
 interface Status {
   label: string;
@@ -18,8 +19,11 @@ interface Status {
 
 export class TaskListComponent implements OnInit {
   private taskService = inject(TaskService);
+  private shareTaskService = inject(ShareTaskService);
+
   filterTasks: Task[] = [];
   originalTasks: Task[] = [];
+  // Status to filter tasks
   status: Status[] = [];
 
   ngOnInit(): void {
@@ -29,8 +33,7 @@ export class TaskListComponent implements OnInit {
 
   loadTasks() {
     this.taskService.getAllTasks().subscribe((taskResponse) => {
-      this.originalTasks = this.sortTasks(taskResponse);
-      this.filterTasks = [...this.originalTasks];
+      this.shareTaskService.setTaskList(taskResponse);
     });
   }
 
@@ -42,9 +45,16 @@ export class TaskListComponent implements OnInit {
     ];
   }
 
+  taskListener = effect(() => {
+    if(this.shareTaskService.taskList().length > 0) {
+      this.originalTasks = this.sortTasks(this.shareTaskService.taskList());
+      this.filterTasks = [...this.originalTasks];
+    }
+  });
+
   sortTasks(tasks: Task[]): Task[] {
     return tasks.sort((a, b) => {
-      return new Date(b.registerDate).getTime() - new Date(a.registerDate).getTime();
+      return new Date(a.registerDate).getTime() - new Date(b.registerDate).getTime();
     });
   }
 
