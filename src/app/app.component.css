@@ -1,0 +1,10 @@
+.container {
+  max-height: 100vh;
+  padding: 2rem 5rem;
+  overflow: hidden;
+}
+
+.container_title {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}

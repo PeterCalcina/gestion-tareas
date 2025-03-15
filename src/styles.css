@@ -1,9 +1,17 @@
 @import "primeicons/primeicons.css";
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+  color: var(--p-gray-950);
+  background: var(--p-gray-100);
 }
 
 .btn_primary .p-button {
@@ -25,12 +33,11 @@
   width: 7rem;
   padding-block: 5px;
   padding-inline: 5px;
-  border-color: var(--p-gray-400);
-  color: var(--p-gray-950);
-  background: var(--p-gray-200);
+  border-color: var(--p-orange-400);
+  background: var(--p-orange-400);
 }
 
 .btn_popover .p-button:not(:disabled):hover {
-  background: var(--p-gray-300);
-  color: var(--p-gray-950);
+  border-color: var(--p-orange-500);
+  background: var(--p-orange-500);
 }

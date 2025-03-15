@@ -1,6 +1,17 @@
 .task_list {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.task_filter {
   width: fit-content;
+}
+
+.task_list__container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 100%;
 }
