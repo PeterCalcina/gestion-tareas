@@ -2,33 +2,37 @@
   width: 18rem;
   border-radius: 5px;
   box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2);
+  transition: box-shadow 0.3s ease;
   overflow: hidden;
+}
+
+.card:hover {
+  box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.2);
 }
 
 .card_header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 5px;
+  padding: 10px;
+  color: var(--p-green-50);
   background: var(--p-green-500);
 }
 
 :where(.card_body, .card_footer) {
-  padding: 10px 5px;
+  padding: 15px 10px;
   background: var(--p-green-50);
 }
 
 .card_body {
-  color: var(--p-green-950);
-
   .card_text-state {
     margin-top: 10px;
     width: fit-content;
     padding: 4px 8px;
-    font-size: 12px;
-    border-radius: 15px;
-    color: var(--p-orange-50);
+    font-size: 13px;
     font-weight: bold;
+    color: var(--p-orange-50);
+    border-radius: 15px;
     background: var(--p-yellow-500);
   }
 

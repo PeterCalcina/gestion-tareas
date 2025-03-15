@@ -1,9 +1,9 @@
 <section class="task_list">
-  <h2>Lista de tareas</h2>
+  <p-select [options]="status" class="task_filter" (onChange)="applyFilter($event)" optionLabel="label" placeholder="Seleccione un estado" showClear />
 
-  <p-select [options]="status" (onChange)="applyFilter($event)" optionLabel="label" placeholder="Seleccione un estado" showClear />
-
-  @for (task of filterTasks; track $index) {
-    <app-card-task [task]="task"></app-card-task>
-  }
+  <div class="task_list__container">
+    @for (task of filterTasks; track $index) {
+      <app-card-task [task]="task"></app-card-task>
+    }
+  </div>
 </section>

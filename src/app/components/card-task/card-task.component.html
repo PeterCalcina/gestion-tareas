@@ -11,14 +11,14 @@
 
   @if (task.status === 'pending') {
     <div class="card_footer">
-      <p-button class="btn_primary" label="Finalizar tarea" (onClick)="taskCompleted(task)" />
+      <p-button class="btn_primary" label="Finalizar tarea" icon="pi pi-check" (onClick)="taskCompleted(task)" />
     </div>
   }
 </div>
 
 <p-popover #op>
   <div class="container_popover">
-    <p-button class="btn_popover" label="Editar tarea" (onClick)="setTask(task)" />
-    <p-button class="btn_popover" label="Eliminar tarea" (onClick)="deleteTask(task)" />
+    <p-button class="btn_popover" label="Editar" icon="pi pi-pencil" (onClick)="setTask(task)" />
+    <p-button class="btn_popover.delete" label="Eliminar" icon="pi pi-trash" (onClick)="deleteTask(task)" />
   </div>
 </p-popover>
