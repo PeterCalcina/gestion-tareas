@@ -5,6 +5,7 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { TaskService } from '../../service/task.service';
 import { ShareTaskService } from '../../service/shareTask.service';
 import { Task } from '../../interface/Task.interface';
+import { ToastService } from '../../service/toastService.service';
 
 @Component({
   selector: 'app-delete-task',
@@ -17,6 +18,7 @@ export class DeleteTaskComponent {
   private confirmationService = inject(ConfirmationService);
   private taskService = inject(TaskService);
   private shareTaskService = inject(ShareTaskService);
+  private toastService = inject(ToastService);
 
   task: Task | undefined;
 
@@ -46,8 +48,10 @@ export class DeleteTaskComponent {
           next: () => {
             this.shareTaskService.deleteTask(this.task!);
             this.shareTaskService.setConfirmDeleteTask(false, undefined);
+            this.toastService.showSuccess('La tarea ha sido eliminada correctamente', 4500);
           },
           error: (error) => {
+            this.toastService.showError('Error al eliminar la tarea', 4500);
             console.error('Error deleting task', error);
           }
         });
