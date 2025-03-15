@@ -119,7 +119,7 @@ export class FormTaskComponent {
   resetValues() {
     this.shareTaskService.setOpenModal(false);
     this.shareTaskService.clearTask();
-    this.taskForm.reset();
+    this.taskForm.reset( { status: 'pending', registerDate: new Date() } );
     this.isCreate = true;
     this.title = 'Crear nueva tarea';
   }
