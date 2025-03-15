@@ -2,7 +2,6 @@ import { computed, Injectable, signal } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { Task } from '../interface/Task.interface';
 
-
 @Injectable({
   providedIn: 'root',
 })
@@ -34,5 +33,38 @@ export class ShareTaskService {
   setConfirmDeleteTask(value: boolean, taskToDelete: Task | undefined) {
     this._openConfirmDialog.set(value);
     this._taskToDelete.set(taskToDelete);
+  }
+
+  /* Current Tasks */
+  private _taskList = signal<Task[]>([]);
+  public taskList = computed(() => this._taskList());
+
+  setTaskList(tasks: Task[]) {
+    this._taskList.set(tasks);
+  }
+
+  addTask(task: Task) {
+    this._taskList.set([...this._taskList(), task]);
+  }
+
+  updateTask(task: Task) {
+    this.handleTasks(task);
+  }
+
+  deleteTask(task: Task) {
+    this.handleTasks(task, true);
+  }
+
+  //Generic method to handle update and delete tasks
+  private handleTasks(task: Task | null, remove = false) {
+    const tasks = this._taskList();
+    const index = tasks.findIndex((t) => t.id === task?.id);
+
+    if (index !== -1) {
+      if (remove) tasks.splice(index, 1);
+      else if (task) tasks[index] = task;
+    }
+
+    this._taskList.set([...tasks]);
   }
 }

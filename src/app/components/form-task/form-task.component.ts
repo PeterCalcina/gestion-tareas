@@ -70,7 +70,15 @@ export class FormTaskComponent {
 
   createTask() {
     const task: Task = this.taskForm.value;
-    this.taskService.createTask(task);
+    this.taskService.createTask(task).subscribe({
+      next: (task) => {
+        this.shareTaskService.addTask(task);
+        this.resetValues();
+      },
+      error: (error) => {
+        console.error('Error:', error);
+      }
+    });
   }
 
   updateTask() {
@@ -78,10 +86,19 @@ export class FormTaskComponent {
       id: this.task!.id,
       ...this.taskForm.value,
     };
-    this.taskService.updateTask(updatedTask);
+
+    this.taskService.updateTask(updatedTask).subscribe({
+      next: (task) => {
+        this.shareTaskService.updateTask(task);
+        this.resetValues();
+      },
+      error: (error) => {
+        console.error('Error:', error);
+      }
+    });
   }
 
-  closeModal() {
+  resetValues() {
     this.shareTaskService.setOpenModal(false);
     this.shareTaskService.clearTask();
     this.taskForm.reset();

@@ -42,7 +42,15 @@ export class DeleteTaskComponent {
       rejectButtonProps: { severity: 'secondary' },
 
       accept: () => {
-        this.taskService.deleteTask(this.task!);
+        this.taskService.deleteTask(this.task!).subscribe({
+          next: () => {
+            this.shareTaskService.deleteTask(this.task!);
+            this.shareTaskService.setConfirmDeleteTask(false, undefined);
+          },
+          error: (error) => {
+            console.error('Error deleting task', error);
+          }
+        });
       },
       reject: () => {
         this.shareTaskService.setConfirmDeleteTask(false, undefined);
