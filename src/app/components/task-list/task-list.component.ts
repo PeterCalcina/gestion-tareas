@@ -53,6 +53,9 @@ export class TaskListComponent implements OnInit {
     ];
   }
 
+  /**
+   * Task listener to update the task list when a new task is added or updated
+   */
   taskListener = effect(() => {
     if(this.shareTaskService.taskList().length > 0) {
       this.originalTasks = this.sortTasks(this.shareTaskService.taskList());

@@ -22,6 +22,10 @@ export class DeleteTaskComponent {
 
   task: Task | undefined;
 
+  /**
+   * This function listens to the changes in the shareTaskService to show the confirm dialog
+   * when the user wants to delete a task.
+   */
   public showConfirmDialog = effect(() => {
     if(this.shareTaskService.openConfirmDialog() === true) {
       this.task = this.shareTaskService.currentTaskToDelete();

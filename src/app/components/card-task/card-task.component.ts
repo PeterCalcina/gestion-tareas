@@ -27,15 +27,27 @@ export class CardTaskComponent {
     return this.newStatus;
   }
 
+  /**
+   * Set task to be edited
+   * @param task Task to be edited
+   */
   setTask( task: Task ) {
     this.shareTaskService.setTask(task);
     this.shareTaskService.setOpenModal(true);
   }
 
+  /**
+   * Set task to be deleted
+   * @param task Task to be deleted
+   */
   deleteTask( task: Task ) {
     this.shareTaskService.setConfirmDeleteTask(true, task);
   }
 
+  /**
+   * Call service to mark task as completed
+   * @param task Task to be completed
+   */
   taskCompleted( task: Task ) {
     task.status = 'complete';
 

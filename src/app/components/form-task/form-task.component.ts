@@ -41,10 +41,18 @@ export class FormTaskComponent {
   title: string = 'Crear nueva tarea';
   task: Task | undefined;
 
+  /**
+   * This function listens the changes in the computed() *openModal*
+   * and updates the value of showModal.
+   */
   readShowModal = effect(() => {
     this.showModal = this.shareTaskService.openModal();
   });
 
+  /**
+   * This function listens the changes in the computed() *task*
+   * if the task is not undefined, it means that the user wants to edit a task.
+   */
   readTask = effect(() => {
     if(this.shareTaskService.task() !== undefined) {
       this.task = this.shareTaskService.task()!;
@@ -61,6 +69,10 @@ export class FormTaskComponent {
     registerDate: [new Date()],
   });
 
+  /**
+   * Load the task in the form
+   * @param task Task to load in the form
+   */
   loadTask(task: Task) {
     this.taskForm.setValue({
       title: task.title,

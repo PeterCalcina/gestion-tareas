@@ -6,7 +6,10 @@ import { Task } from '../interface/Task.interface';
   providedIn: 'root',
 })
 export class ShareTaskService {
-  /* Task Object to EDIT */
+  /**
+   * Manages task-related state for sharing across components, including task data,
+   * modal visibility, and task deletion confirmation.
+   */
   private _task = signal<Task | undefined>(undefined);
   public task = computed(() => this._task());
   private _openModal = signal<boolean>(false);
@@ -24,7 +27,10 @@ export class ShareTaskService {
     this._openModal.set(value);
   }
 
-  /* Task Object to DELETE */
+  /**
+    * Manages task deletion confirmation state, including the task to delete and
+    * the visibility of the confirmation dialog.
+   */
   private _openConfirmDialog = signal<boolean>(false);
   private _taskToDelete = signal<Task | undefined>(undefined);
   public openConfirmDialog = computed(() => this._openConfirmDialog());
