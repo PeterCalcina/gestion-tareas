@@ -4,6 +4,7 @@ import { PopoverModule } from 'primeng/popover';
 
 import { Task } from '../../interface/Task.interface';
 import { ShareTaskService } from '../../service/shareTask.service';
+import { TaskService } from '../../service/task.service';
 
 @Component({
   selector: 'app-card-task',
@@ -15,6 +16,7 @@ export class CardTaskComponent {
   @Input() task!: Task;
 
   private shareTaskService = inject(ShareTaskService);
+  private taskService = inject(TaskService);
 
   newStatus: string = '';
 
@@ -37,7 +39,7 @@ export class CardTaskComponent {
 
     this.taskService.updateTask(task).subscribe({
       next: (task: Task) => {
-        console.log('Task updated', task);
+        this.shareTaskService.updateTask(task);
       },
       error: (error) => {
         console.error('Error updating task', error);
