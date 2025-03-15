@@ -2,25 +2,37 @@ import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import { Task } from '../interface/Task.interface';
+import { environment } from '../../environment/environment';
+import { catchError, Observable, throwError } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class TaskService {
-  private baseUrl = 'data.json';
+  private baseUrl = environment.API_URL;
   private http = inject(HttpClient);
 
-  getAllTasks() {
-    return this.http.get<Task[]>(this.baseUrl);
+  private createUrl(endpoint: string): string {
+    return `${this.baseUrl}/${endpoint}`;
   }
 
-  createTask(task: Task) {
-    console.log('Task created:', task);
+  //Generic request method to handle all requests
+  private request<T>(method: string, url: string, body?: Task) {
+    const options = body ? { body } : {};
+    return this.http.request<T>(method, url, options);
   }
 
-  updateTask(task: Task) {
-    console.log('Task updated:', task);
+  getAllTasks(): Observable<Task[]> {
+    return this.request<Task[]>('GET', this.createUrl('getAllTasks'));
   }
 
-  deleteTask(task: Task) {
-    console.log('Task deleted:', task);
+  createTask(task: Task): Observable<Task> {
+    return this.request<Task>('POST', this.createUrl('createTask'), task);
+  }
+
+  updateTask(task: Task): Observable<Task> {
+    return this.request<Task>('PUT', this.createUrl('updateTask') + '/' + task.id, task);
+  }
+
+  deleteTask(task: Task): Observable<void> {
+    return this.request<void>('DELETE', this.createUrl('deleteTask') + '/' + task.id);
   }
 }
