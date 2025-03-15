@@ -5,7 +5,7 @@ const targetPath = `./src/environment/environment.ts`;
 
 const envFileContent = `
   export const environment = {
-    apiUrl: '${process.env['API_URL']}',
+    API_URL: '${process.env['API_URL']}',
   };
 `;
 
