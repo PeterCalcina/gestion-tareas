@@ -15,6 +15,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { Task } from '../../interface/Task.interface';
 import { TaskService } from '../../service/task.service';
 import { ShareTaskService } from '../../service/shareTask.service';
+import { ToastService } from '../../service/toastService.service';
 
 @Component({
   selector: 'app-form-task',
@@ -33,6 +34,7 @@ export class FormTaskComponent {
   private formBuilder = inject(FormBuilder);
   private taskService = inject(TaskService);
   private shareTaskService = inject(ShareTaskService);
+  private toastService = inject(ToastService);
 
   isCreate: boolean = true;
   showModal: boolean = false;
@@ -73,9 +75,11 @@ export class FormTaskComponent {
     this.taskService.createTask(task).subscribe({
       next: (task) => {
         this.shareTaskService.addTask(task);
+        this.toastService.showSuccess('Tarea creada correctamente', 4500);
         this.resetValues();
       },
       error: (error) => {
+        this.toastService.showError('Error al crear la tarea', 4500);
         console.error('Error:', error);
       }
     });
@@ -90,9 +94,11 @@ export class FormTaskComponent {
     this.taskService.updateTask(updatedTask).subscribe({
       next: (task) => {
         this.shareTaskService.updateTask(task);
+        this.toastService.showSuccess('Tarea actualizada correctamente', 4500);
         this.resetValues();
       },
       error: (error) => {
+        this.toastService.showError('Error al actualizar la tarea', 4500);
         console.error('Error:', error);
       }
     });

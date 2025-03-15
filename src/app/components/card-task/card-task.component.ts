@@ -5,6 +5,7 @@ import { PopoverModule } from 'primeng/popover';
 import { Task } from '../../interface/Task.interface';
 import { ShareTaskService } from '../../service/shareTask.service';
 import { TaskService } from '../../service/task.service';
+import { ToastService } from '../../service/toastService.service';
 
 @Component({
   selector: 'app-card-task',
@@ -17,6 +18,7 @@ export class CardTaskComponent {
 
   private shareTaskService = inject(ShareTaskService);
   private taskService = inject(TaskService);
+  private toastService = inject(ToastService);
 
   newStatus: string = '';
 
@@ -40,8 +42,10 @@ export class CardTaskComponent {
     this.taskService.updateTask(task).subscribe({
       next: (task: Task) => {
         this.shareTaskService.updateTask(task);
+        this.toastService.showSuccess('Tarea completada correctamente', 4500);
       },
       error: (error) => {
+        this.toastService.showError('Hubo un error al marcar la tarea como completada', 4500);
         console.error('Error updating task', error);
       }
     });

@@ -4,6 +4,7 @@ import { Task } from '../../interface/Task.interface';
 import { CardTaskComponent } from "../card-task/card-task.component";
 import { SelectChangeEvent, SelectModule } from 'primeng/select';
 import { ShareTaskService } from '../../service/shareTask.service';
+import { ToastService } from '../../service/toastService.service';
 
 interface Status {
   label: string;
@@ -20,6 +21,7 @@ interface Status {
 export class TaskListComponent implements OnInit {
   private taskService = inject(TaskService);
   private shareTaskService = inject(ShareTaskService);
+  private toastService = inject(ToastService);
 
   filterTasks: Task[] = [];
   originalTasks: Task[] = [];
@@ -32,8 +34,14 @@ export class TaskListComponent implements OnInit {
   }
 
   loadTasks() {
-    this.taskService.getAllTasks().subscribe((taskResponse) => {
-      this.shareTaskService.setTaskList(taskResponse);
+    this.taskService.getAllTasks().subscribe({
+      next: (tasks: Task[]) => {
+        this.shareTaskService.setTaskList(tasks);
+      },
+      error: (error) => {
+        this.toastService.showError('Ha ocurrido un error al cargar las tareas', 4500);
+        console.error('Error al cargar tareas: ', error);
+      }
     });
   }
 
